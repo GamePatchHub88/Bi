@@ -1,0 +1,104 @@
+/* Reset وتنسيق أساسي */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* البطاقة */
+.card {
+    background-color: #1F1F1F;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px #C4F82A, 0 0 40px #C4F82A, 0 0 60px #C4F82A;
+    transition: box-shadow 0.3s ease;
+}
+
+/* النصوص الثانوية */
+.r {
+    color: #C4F82A;
+    font-size: 0.875rem; /* 14px تقريبًا */
+    margin: 5px 0;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 0.875rem;
+    margin: 5px 0;
+}
+
+/* الصورة */
+.avatar {
+    width: 20vw;
+    max-width: 96px;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #C4F82A;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* قسم الأزرار */
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.follow-button {
+    background-color: #333333;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.875rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    cursor: pointer;
+    width: 80%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+}
+
+.follow-button:hover {
+    background-color: #C4F82A;
+    color: #000000;
+}
+
+/* Media Queries للشاشات الصغيرة */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.25rem;
+    }
+    h2, .r {
+        font-size: 0.75rem;
+    }
+    .avatar {
+        width: 25vw;
+        max-width: 80px;
+    }
+    .follow-button {
+        width: 90%;
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+}
