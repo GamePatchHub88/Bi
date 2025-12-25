@@ -1,104 +1,164 @@
-/* Reset وتنسيق أساسي */
+/* إعدادات عامة */
+:root {
+    --neon-blue: #00d2ff;
+    --neon-purple: #9d50bb;
+    --card-bg: #0f172a;
+}
+
 body {
-    padding: 0;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #141414;
+    padding: 0;
+    background: #050810;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    color: #FFFFFF;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    overflow-x: hidden;
 }
 
-/* البطاقة */
-.card {
-    background-color: #1F1F1F;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    box-shadow: 0 0 20px #C4F82A, 0 0 40px #C4F82A, 0 0 60px #C4F82A;
-    transition: box-shadow 0.3s ease;
-}
-
-/* النصوص الثانوية */
-.r {
-    color: #C4F82A;
-    font-size: 0.875rem; /* 14px تقريبًا */
-    margin: 5px 0;
-}
-
-h1 {
-    font-size: 1.5rem;
-    margin: 10px 0;
-}
-
-h2 {
-    font-size: 0.875rem;
-    margin: 5px 0;
-}
-
-/* الصورة */
-.avatar {
-    width: 20vw;
-    max-width: 96px;
-    height: auto;
-    border-radius: 50%;
-    border: 3px solid #C4F82A;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-/* قسم الأزرار */
-.bottom-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* --- خلفية الأنيميشن (الدوائر الصاعدة) --- */
+.bg-animation {
+    position: fixed;
     width: 100%;
-    gap: 10px;
-    margin-top: 20px;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom, #0f172a, #050810);
 }
 
-.follow-button {
-    background-color: #333333;
-    border: none;
-    border-radius: 8px;
-    color: #ffffff;
-    font-size: 0.875rem;
-    font-weight: bold;
-    padding: 12px 20px;
-    cursor: pointer;
-    width: 80%;
-    max-width: 300px;
-    transition: all 0.3s ease;
+.circles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    background: rgba(255, 255, 255, 0.05);
+    animation: animateUp 25s linear infinite;
+    bottom: -150px;
+}
+/* إعدادات الدوائر */
+.circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+
+@keyframes animateUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
 }
 
-.follow-button:hover {
-    background-color: #C4F82A;
-    color: #000000;
+/* --- الكارد الجبار --- */
+.wrapper {
+    width: 95%;
+    max-width: 450px;
+    padding: 20px;
 }
 
-/* Media Queries للشاشات الصغيرة */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.25rem;
-    }
-    h2, .r {
-        font-size: 0.75rem;
-    }
-    .avatar {
-        width: 25vw;
-        max-width: 80px;
-    }
-    .follow-button {
-        width: 90%;
-        font-size: 0.75rem;
-        padding: 10px;
-    }
+.main-card {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 30px;
+    padding: 3px; /* مسافة للحدود المضيئة */
+    overflow: hidden;
+    animation: float 5s ease-in-out infinite;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+/* أنيميشن الطفو */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* تأثير الحدود الدوارة */
+.main-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, var(--neon-blue), transparent, var(--neon-purple), transparent);
+    animation: rotateBorder 4s linear infinite;
+}
+
+@keyframes rotateBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.card-inner {
+    position: relative;
+    background: #0f172a;
+    border-radius: 28px;
+    padding: 30px 20px;
+    z-index: 1;
+    text-align: center;
+}
+
+/* الصورة الشخصية */
+.img-wrapper img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--neon-blue);
+    padding: 5px;
+    transition: 0.5s;
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.main-card:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+h1 { color: #fff; font-size: 24px; margin: 15px 0 5px; }
+
+.tags { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+.tags span {
+    background: rgba(0, 210, 255, 0.1);
+    color: var(--neon-blue);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--neon-blue);
+}
+
+.address { color: #94a3b8; font-size: 13px; margin-bottom: 25px; }
+
+/* الروابط */
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-item {
+    text-decoration: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+/* تأثيرات الهوفر (Hover) المخصصة */
+.link-item:hover {
+    transform: translateX(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.y1:hover { border-color: #171515; color: #fff; background: #171515 !important; }
+.y2:hover { border-color: #ffffff; color: #000; background: #fff !important; }
+.y3:hover { border-color: #0a66c2; background: #0a66c2 !important; }
+.y4:hover { border-color: #ff0000; background: #ff0000 !important; }
+.y6:hover { border-color: #00c8ff; background: #00c8ff !important; }
+
+/* توافق الشاشات الصغيرة جداً */
+@media (max-width: 400px) {
+    .card-inner { padding: 20px 10px; }
+    h1 { font-size: 20px; }
+    .link-item { font-size: 14px; padding: 12px; }
 }
